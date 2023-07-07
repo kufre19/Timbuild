@@ -18,12 +18,10 @@ trait HandleText
     public function text_index()
     {
         $this->find_text_intent();
-        if ($this->text_intent == "greetings") {
-            $this->send_greetings_message($this->userphone);
-            $main_ability = new Main();
-            $main_ability->begin_func();
-            $this->run_action_session();
+        if ($this->text_intent == "menu") {
+        //    start over and return to main menu 
         }
+
         if ($this->text_intent == "run_action_steps") {
             $this->continue_session_step();
         }
@@ -49,12 +47,10 @@ trait HandleText
     {
         $message = $this->user_message_lowered;
 
-        $greetings = Config::get("text_intentions.greetings");
+        // $greetings = Config::get("text_intentions.greetings");
         $menu = Config::get("text_intentions.menu");
       
-        if (in_array($message, $greetings)) {
-            $this->text_intent = "greetings";
-        } elseif (in_array($message, $menu)) {
+       if (in_array($message, $menu)) {
             $this->text_intent = "menu";
         }
          elseif (isset($this->user_session_data['run_action_step'])) {
@@ -67,27 +63,7 @@ trait HandleText
     }
 
 
-    public function getLanguageTrans($text)
-    {
-        $userModel = new WaUser();
-        $user = $userModel->where("whatsapp_id",$this->userphone)->first();
 
-        $language =  $user->lang ?? $this->user_session_data['language'] ?? "";
-
-        if($language =="")
-        {
-            return $text;
-        }
-        if($language != "en"){
-            $googleTrans = new GoogleTranslate();
-            $result = $googleTrans->setTarget($language)->translate($text);
-            return $result;
-        }else{
-            return $text;
-        }
-        
-
-    }
 
     public function  runtest(array $data)
     {

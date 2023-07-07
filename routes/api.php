@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::any('/bot',[\App\Http\Controllers\BotController::class,'index']);
+Route::any('/bot',[\App\Http\Controllers\BotController::class,'test']);
 
 Route::any('/verify',[\App\Http\Controllers\BotController::class,'verify_bot']);

@@ -14,7 +14,9 @@ return [
         "menu",
         "show menu",
         "displpay menu",
-        "main menu"
+        "main menu",
+        "MENU",
+        "return to menu"
     ],
     "show_cart"=>[
         "cart",
