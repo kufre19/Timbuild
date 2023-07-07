@@ -32,12 +32,7 @@ class BotController extends Controller
     public $user_session_status;
     public $wa_image_id;
 
-    /* 
-    @$menu_item_id holds the id sent back from selecting an item from whatsapp
-    @
-    
-    
-    */
+  
 
     public function __construct(Request $request)
     {
