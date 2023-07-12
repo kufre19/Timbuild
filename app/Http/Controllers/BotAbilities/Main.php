@@ -24,6 +24,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
     public function begin_func()
     {
         // echo"loozp";
+        // this should be removed
 
      
     }
