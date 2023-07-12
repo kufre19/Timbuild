@@ -17,4 +17,4 @@ jobs:
         server: ftp.somymail.co.za
         username:  ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /public_html/
+        server-dir: /public_html
