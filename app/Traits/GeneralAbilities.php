@@ -173,7 +173,7 @@ trait GeneralAbilities
 
     }
 
-    public function checkConnectionConsent($response,$store)
+    public function checkConnectionConsent($response,$store,$user="")
     {
         $opt = ["Yes Please!","No. I am all sorted. Thank You"];
         $consent_menu = $this->MenuArrayToObj($opt);
@@ -186,7 +186,7 @@ trait GeneralAbilities
             $this->returnHomeMessage();
             
         }else{
-            $this->sendConnection($store);
+            $this->sendConnection($store,$user);
         }
 
 
@@ -194,12 +194,18 @@ trait GeneralAbilities
 
     }
 
-    public function sendConnection($store)
+    public function sendConnection($store,$user="")
     {
+        if($user != "")
+        {
+            $name = $user;
+        }else{
+            $name = $this->username;
+        }
         $store_model = new StoreInfo();
         $store = $store_model->where('id',$store)->first();
         $message = <<<MSG
-        Thank You {$this->username}. TimBuild {$store->location} is located at {$store->address}. 
+        Thank You {$name}. TimBuild {$store->location} is located at {$store->address}. 
         Their contact number is: {$store->landline}
         You can also email them on {$store->email_1}.
 

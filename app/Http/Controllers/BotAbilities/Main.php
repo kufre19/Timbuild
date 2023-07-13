@@ -64,8 +64,10 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
             $user_selected_lowered = $this->user_message_lowered;
 
             if ($user_selected == "1" || $user_selected_lowered == "Enter our latest Competition") {
-                $this->send_post_curl($this->make_text_message("coming soon!", $this->userphone));
-                $this->ResponsedWith200();
+                $latest_comp = new LatestCompetition();
+                $latest_comp->begin_func();
+                // $this->send_post_curl($this->make_text_message("coming soon!", $this->userphone));
+                // $this->ResponsedWith200();
             }
 
             if ($user_selected == "2" || $user_selected_lowered == "Locate your nearest TimBuild Store") {

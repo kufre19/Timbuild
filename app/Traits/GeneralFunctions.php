@@ -85,6 +85,11 @@ trait GeneralFunctions
         // $this->continue_session_step();
     }
 
+    public function getAnswerFromSession($key)
+    {
+        return  $this->user_session_data['answered_questions'][$key];
+    }
+
   
 
     public function log_last_operation($value = "")
@@ -203,6 +208,8 @@ trait GeneralFunctions
         // $this->continue_session_step();
 
     }
+
+    
 
 
     public function check_for_expected_response($value=null)
