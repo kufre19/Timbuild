@@ -64,7 +64,7 @@ class TextMenuSelection extends GeneralFunctions
         return true;
     }
 
-    public function check_expected_response($response)
+    public function check_expected_response($response): mixed
     {
         if (!in_array($response, $this->expected_responses)) {
             // info($response);

@@ -54,6 +54,19 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
     public function DoSelection()
     {
         // check first if the selection is in the list
+        $menu_main = $this->MenuArrayToObj($this->main_menu);
+        $text_menu_selection = new TextMenuSelection($menu_main);
+        $check = $text_menu_selection->check_expected_response($this->user_message_original);
+
+        if($check)
+        {
+            // do the menu selection
+            $this->send_post_curl($this->make_text_message($this->user_message_original,$this->userphone));
+            $this->ResponsedWith200();
+        }
+        
+
+
 
     }
 
