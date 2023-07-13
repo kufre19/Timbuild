@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\BotAbilities;
 
 use App\Http\Controllers\BotFunctions\GeneralFunctions;
-use GeneralAbilities;
+use App\Traits\GeneralAbilities;
 
 class LocateStore extends GeneralFunctions implements AbilityInterface{
     use GeneralAbilities;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Region;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get("test", function(){
+    $regions_Arr = [];
+        $region_model = new Region();
+        $regions = $region_model->select("region")->get();
+        foreach ($regions as $region => $value) {
+            array_push($regions_Arr,$value['region']);
+        }
+    dd($regions_Arr);
 });
