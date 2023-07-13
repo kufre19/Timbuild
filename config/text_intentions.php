@@ -16,6 +16,8 @@ return [
         "displpay menu",
         "main menu",
         "MENU",
+        'hi',
+        'hello',
         "return to menu"
     ],
     "show_cart"=>[

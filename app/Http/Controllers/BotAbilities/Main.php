@@ -16,17 +16,29 @@ use Illuminate\Http\Request;
 class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
 {
 
-    public $steps = ["begin_func", "", ""];
+    public $steps = ["begin_func", "DoSelection", ""];
+    public $main_menu = [
+        "Enter our latest Competition",
+        "Locate your nearest TimBuild Store",
+        "Visit the TimBuild SA’s website",
+        "Read our Competition Rules for Entry"
+    ];
    
 
 
 
     public function begin_func()
     {
-        // echo"loozp";
-        // this should be removed
+       $menu_main = $this->main_menu;
+       $text_menu = new TextMenuSelection($menu_main);
+       $menu_message = <<<MSG
+       Hello There!
+       Welcome to Timbuild South Africa.
+       Please choose from one of the following options:
+       MSG;
+       $text_menu->send_menu_to_user($menu_message);
 
-     
+       $this->ResponsedWith200();
     }
 
 
@@ -38,6 +50,11 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
    
 
    
+    public function DoSelection()
+    {
+        // check first if the selection is in the list
+
+    }
 
 
     function call_method($key)

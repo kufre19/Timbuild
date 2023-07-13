@@ -110,8 +110,8 @@ class BotController extends Controller
             return $this->verify_bot($request);
         }
 
-        $this->fetch_user();
-        // $this->fetch_user_session();
+        // $this->fetch_user();
+        $this->fetch_user_session();
         switch ($this->message_type) {
             case 'text':
                 $this->text_index();
