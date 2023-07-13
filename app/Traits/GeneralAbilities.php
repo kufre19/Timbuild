@@ -78,6 +78,100 @@ trait GeneralAbilities
        
     }
 
+
+    public function checkStoreSelected($store_obj,$response)
+    {
+        $txt_menu = new TextMenuSelection($store_obj);
+        $check = $txt_menu->check_expected_response($response);
+        if($check)
+        {
+            return true;
+        }
+    }
+
+    public function goBackToRegionSelection($region,$response)
+    {
+        if(!is_numeric($region))
+        {
+            $region_model = new Region();
+            $region_select = $region_model->select("id")->where('region',$region)->first();
+            $region = $region_select->id;
+
+        }
+        $store_model = new StoreInfo();
+        $stores = $store_model->select("location")->where("region_id",$region)->get();
+        $stores_Arr = [];
+
+        foreach ($stores as $store => $value) {
+            array_push($stores_Arr,$value['location']);
+        }
+        // extra data that's not saved in db 
+        array_push($stores_Arr,"Go Back to Province selection");
+
+        if(!is_numeric($response))
+        {
+            // check by text
+            if($response == "Go Back to Province selection")
+            {
+                return true;
+            }
+        }else{
+            if($response == count($stores_Arr))
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+
+    }
+    
+    // this will fetch sstore from db using the selection stored in db
+    public function fetchStoreSelected($region, $selection)
+    {
+        if(!is_numeric($region))
+        {
+            $region_model = new Region();
+            $region_select = $region_model->select("id")->where('region',$region)->first();
+            $region = $region_select->id;
+
+        }
+        $store_model = new StoreInfo();
+        $stores = $store_model->select("location")->where("region_id",$region)->get();
+        $stores_Arr = [];
+
+        foreach ($stores as $store => $value) {
+            array_push($stores_Arr,$value['location']);
+        }
+        if(!is_numeric($selection))
+        {
+            // fetch by location
+            $location = $selection;
+        }else{
+            // get location first then fetch by location
+            $item = $selection -1;
+            $location = $stores_Arr[$item];
+        }
+        $store_model = new StoreInfo();
+        $store = $store_model->where('location',$location)->first();
+
+        return $store;
+
+
+
+       
+    }
+
+    public function connection_consent()
+    {
+        $opt = ["Yes Please!","No. I am all sorted. Thank You"];
+        $message = "Would you like us to put you in contact with your nearest store?";
+        $txt_menu = new TextMenuSelection($opt);
+        $txt_menu->send_menu_to_user($message);
+
+    }
+
     public function returnHomeMessage ()
     {
         $this->send_post_curl($this->make_text_message("NOTE: Reply MENU at any time to return to our main menu.",$this->userphone));

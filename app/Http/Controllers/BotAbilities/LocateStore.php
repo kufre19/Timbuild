@@ -9,8 +9,10 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
 {
     use GeneralAbilities;
 
-    public $steps = ["begin_func", "getStoreLocation", ""];
+    public $steps = ["begin_func", "getStoreLocation", "getConsent"];
     public const USER_REGION = "user_region";
+    public const STORE_SELECTED = "store_selected";
+
 
 
     public function begin_func()
@@ -50,7 +52,7 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
         }
 
           // store collected region
-          $this->storeAnswerToSession(self::USER_REGION);
+          $this->storeAnswerToSession(['store_as'=>self::USER_REGION]);
 
           $store_menu = $this->listStoreInRegion($user_selected);
           $message = <<<MSG
@@ -58,9 +60,35 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
           MSG;
           $this->sendstoreMenu($store_menu,$message);
           $this->returnHomeMessage();
+          $this->go_to_next_step();
           $this->ResponsedWith200();
 
 
+    }
+
+
+    public function getConsent()
+    {
+        $answers = $this->user_session_data['answered_questions'];
+        $region = $answers[self::USER_REGION];
+        // check store location selected
+        $store_menu = $this->listStoreInRegion($region);
+        $this->checkStoreSelected($store_menu,$this->user_message_original);
+
+        // check if need to be returned to province menu
+        if($this->goBackToRegionSelection($region,$this->user_message_original))
+        {
+            return $this->begin_func();
+        }
+
+        // store the store-location selected 
+        $store = $this->fetchStoreSelected($region,$this->user_message_original);
+        $this->storeAnswerToSession(["store_as"=>$store->id]);
+
+        // ask for constent
+        $this->connection_consent();
+        $this->go_to_next_step();
+        $this->ResponsedWith200();
 
     }
 
