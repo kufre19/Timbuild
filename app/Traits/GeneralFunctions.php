@@ -56,7 +56,7 @@ trait GeneralFunctions
     
    
 
-    public function storeAnswerToSession($value = "")
+    public function storeAnswerToSession($value = "",$data="")
     {
         if (isset($value['expect'])) {
 
@@ -70,6 +70,10 @@ trait GeneralFunctions
             }
         } else {
             $user_response = $this->user_message_original;
+        }
+        if($data != "")
+        {
+            $user_response = $data;
         }
 
         $session = $this->user_session_data;

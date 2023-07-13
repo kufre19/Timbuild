@@ -83,7 +83,7 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
 
         // store the store-location selected 
         $store = $this->fetchStoreSelected($region,$this->user_message_original);
-        $this->storeAnswerToSession(["store_as"=>$store->id]);
+        $this->storeAnswerToSession(["store_as"=>self::STORE_SELECTED],$store->id);
 
         // ask for constent
         $this->connection_consent();

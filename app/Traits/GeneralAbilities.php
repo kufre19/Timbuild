@@ -166,8 +166,9 @@ trait GeneralAbilities
     public function connection_consent()
     {
         $opt = ["Yes Please!","No. I am all sorted. Thank You"];
+        $consent_menu = $this->MenuArrayToObj($opt);
         $message = "Would you like us to put you in contact with your nearest store?";
-        $txt_menu = new TextMenuSelection($opt);
+        $txt_menu = new TextMenuSelection($consent_menu);
         $txt_menu->send_menu_to_user($message);
 
     }
