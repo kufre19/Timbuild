@@ -13,7 +13,11 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
     public const USER_REGION = "user_region";
     public const STORE_SELECTED = "store_selected";
-    public $steps = ["begin_func", "getLastName", "getEmail","competitorType","confirmCompetitorType","saveWorkingOn","getStoreLocation","getConsent","CheckConsentSelection"];
+    public $steps = [
+        "begin_func", "getLastName", "getEmail","competitorType",
+        "confirmCompetitorType",
+        "saveWorkingOn",
+        "getStoreLocation","getConsent","CheckConsentSelection",];
     public $competitor_type_menu = ["DIY","Contractor"];
     public $industry = [
         "Carpenter / Cabinet Maker",
@@ -254,10 +258,9 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
             Please select your region to make your store selection easier. Your need only reply with the corresponding number:
             
             MSG;
-           return $this->listRegion($message);
+           $this->listRegion($message);
            $this->returnHomeMessage();
 
-           $this->go_to_next_step();
            $this->ResponsedWith200();
         }
 
@@ -283,12 +286,14 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
         // store data collected
         $this->storeCollectedData();
+        // $this->go_to_next_step();
         $this->ResponsedWith200();
     }
 
 
     public function storeCollectedData()
     {
+       
         // set session answers
         $answers = $this->user_session_data['answered_questions'];
 
@@ -314,7 +319,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         // var industry
         // region
         // store
-        $store = $this->getStoreLocation();
+      
 
 
         if($answers['comp_type'] == "DIY")
