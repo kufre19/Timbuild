@@ -9,7 +9,7 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
 {
     use GeneralAbilities;
 
-    public $steps = ["begin_func", "getStoreLocation", "getConsent"];
+    public $steps = ["begin_func", "getStoreLocation", "getConsent","CheckConsentSelection"];
     public const USER_REGION = "user_region";
     public const STORE_SELECTED = "store_selected";
 
@@ -90,6 +90,15 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
         $this->go_to_next_step();
         $this->ResponsedWith200();
 
+    }
+
+    public function CheckConsentSelection()
+    {
+        $answers = $this->user_session_data['answered_questions'];
+        $store = $answers[self::STORE_SELECTED];
+
+        $this->checkConnectionConsent($this->user_message_original,$store);
+        $this->ResponsedWith200();
     }
 
     function call_method($key)
