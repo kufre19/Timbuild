@@ -29,15 +29,15 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
 
     public function begin_func()
     {
-       $menu_main = $this->main_menu;
+       $menu_main = $this->MenuArrayToObj($this->main_menu);
        $text_menu = new TextMenuSelection($menu_main);
        $menu_message = <<<MSG
        Hello There!
        Welcome to Timbuild South Africa.
        Please choose from one of the following options:
        MSG;
+       $this->set_session_route("Main");
        $text_menu->send_menu_to_user($menu_message);
-
        $this->ResponsedWith200();
     }
 
