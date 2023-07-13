@@ -42,7 +42,7 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
 
       
         // second check for selection of others
-        if ($user_selected == "6" || $this->user_message_lowered == "others") {
+        if ($user_selected == "5" || $this->user_message_lowered == "others") {
             $message = <<<MSG
             We’re sorry you’re located in a province we currently do not have any stores, but we’re positive one will be opening soon.
             MSG;
