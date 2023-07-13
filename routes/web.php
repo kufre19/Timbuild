@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Entries;
 use App\Models\Region;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $entries_model = new Entries();
+    $entries = $entries_model->paginate(20);
+    return view('index',compact("entries"));
 });
 
 
