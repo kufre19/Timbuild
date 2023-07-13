@@ -69,6 +69,42 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
                 $this->send_post_curl($this->make_text_message("coming soon!",$this->userphone));
                 $this->ResponsedWith200();
            }
+
+           if($user_selected == "2" || $user_selected_lowered == "Locate your nearest TimBuild Store" )
+           {
+                $this->send_post_curl($this->make_text_message("coming soon!",$this->userphone));
+                $this->ResponsedWith200();
+           }
+
+           if($user_selected == "3" || $user_selected_lowered == "Visit the TimBuild SA’s website" )
+           {
+                $this->send_post_curl($this->make_text_message("coming soon!",$this->userphone));
+                $this->ResponsedWith200();
+           }
+
+           if($user_selected == "4" || $user_selected_lowered == "Read our Competition Rules for Entry" )
+           {
+            $button = [
+                [
+                    "type" => "url",
+                    "reply" => [
+                        "id" => "bnl_sample:4",
+                        "title" => "Sample Audio"
+                    ]
+                ]
+
+            ];
+               $message = <<<MSG
+               Our latest rules of entry into our competitions can be found on our main TimBuild SA website by clicking the link below:
+
+               www.timbuild.co.za/competitions 
+
+               NOTE: Reply MENU at any time to return to our main menu.
+
+               MSG;
+               $button_message = $this->make_text_message($message,$this->userphone,true);
+               $this->ResponsedWith200();
+           }
         }
         
 
