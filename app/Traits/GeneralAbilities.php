@@ -180,12 +180,16 @@ trait GeneralAbilities
         $txt_menu = new TextMenuSelection($consent_menu);
         $txt_menu->check_expected_response($response);
 
+
         if($response == "2" || $response == "No. I am all sorted. Thank You")
         {
+        $this->storeAnswerToSession(['store_as'=>"connect_to_store"],"no");
+
             $this->send_post_curl($this->make_text_message("TimBuild SA appreciates you. Watch out for our future competitions and promotions.",$this->userphone));
             $this->returnHomeMessage();
             
         }else{
+            $this->storeAnswerToSession(['store_as'=>"connect_to_store"],"yes");
             $this->sendConnection($store,$user);
         }
 
@@ -205,13 +209,12 @@ trait GeneralAbilities
         $store_model = new StoreInfo();
         $store = $store_model->where('id',$store)->first();
         $message = <<<MSG
-        Thank You {$name}. TimBuild {$store->location} is located at {$store->address}. 
+        Thank You {$name}. TimBuild {$store->location} is located at {$store->address}.
         Their contact number is: {$store->landline}
         You can also email them on {$store->email_1}.
 
         To be directed to the above store and by clicking the link below, you consent for us to 
-        connect you to the store. Your communications will be with your chosen store 
-        directly and no longer with TimBuild SA.
+        connect you to the store. Your communications will be with your chosen store directly and no longer with TimBuild SA.
         {link}
         MSG;
 
@@ -220,6 +223,24 @@ trait GeneralAbilities
         $this->send_post_curl($this->make_text_message($message,$this->userphone));
 
 
+    }
+
+    public function fetchRegion($region_id)
+    {
+        $region_model = new Region();
+        $region_select = $region_model->where('id',$region_id)->first();
+
+        return $region_select;
+
+    }
+
+    public function fetchStore($store_id)
+    {
+        $store_model = new StoreInfo();
+        $store = $store_model->where('id',$store_id)->first();
+
+        return $store;
+        
     }
 
     public function returnHomeMessage ()

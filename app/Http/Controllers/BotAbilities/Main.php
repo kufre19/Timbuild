@@ -95,7 +95,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
 
                 $message = <<<MSG
                Our latest rules of entry into our competitions can be found on our main TimBuild SA website by clicking the link below:
-
+               
                www.timbuild.co.za/competitions 
 
                NOTE: Reply MENU at any time to return to our main menu.

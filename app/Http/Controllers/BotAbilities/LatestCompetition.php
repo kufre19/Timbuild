@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BotAbilities;
 
 use App\Http\Controllers\BotFunctions\GeneralFunctions;
 use App\Http\Controllers\BotFunctions\TextMenuSelection;
+use App\Models\Entries;
 use App\Traits\GeneralAbilities;
 
 class LatestCompetition extends GeneralFunctions implements AbilityInterface
@@ -279,7 +280,75 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $username = $this->getAnswerFromSession("first_name") . " ". $this->getAnswerFromSession("last_name");
 
         $this->checkConnectionConsent($this->user_message_original,$store,$username);
+
+        // store data collected
+        $this->storeCollectedData();
         $this->ResponsedWith200();
+    }
+
+
+    public function storeCollectedData()
+    {
+        // set session answers
+        $answers = $this->user_session_data['answered_questions'];
+
+
+        // set all data into var
+        $store_id = $answers[self::STORE_SELECTED];
+        $region_id = $answers[self::USER_REGION];
+
+        $first_name = $answers['first_name'];
+        $last_name = $answers['last_name'];
+        $email = $answers['email'];
+        $phone = $answers['phone'];
+        $is_diy_customer ="no";
+        $is_contractor	= "no";
+        $project = "NA";
+        $industry = "NA";
+
+
+        // set all data from abstract to readable data
+        // var is_diy_customer
+        // var is_contractor
+        // var project
+        // var industry
+        // region
+        // store
+        $store = $this->getStoreLocation();
+
+
+        if($answers['comp_type'] == "DIY")
+        {
+            $is_diy_customer = "yes";
+            $project = $answers['working_on'];
+        }else {
+            $is_contractor = "yes";
+            $industry = $answers['working_on'];
+        }
+
+        $region = $this->fetchRegion($region_id);
+        $store = $this->fetchStore($store_id);
+
+
+
+
+        // then save data to entries table
+        $entries_model = new Entries();
+        $entries_model->first_name = $first_name;
+        $entries_model->last_name = $last_name;
+        $entries_model->email = $email;
+        $entries_model->phone = $phone;
+        $entries_model->region = $region->region;
+        $entries_model->store_closes = $store->location;
+        $entries_model->project = $project;
+        $entries_model->industry = $industry;
+        $entries_model->is_diy_customer = $is_diy_customer;
+        $entries_model->is_contractor = $is_contractor;
+        $entries_model->connect_to_store = $answers['connect_to_store'];
+        $entries_model->save();
+
+
+
     }
 
 
