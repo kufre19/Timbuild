@@ -61,8 +61,14 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
         if($check)
         {
             // do the menu selection
-            $this->send_post_curl($this->make_text_message($this->user_message_original,$this->userphone));
-            $this->ResponsedWith200();
+           $user_selected = $this->user_message_original;
+           $user_selected_lowered = $this->user_message_lowered;
+
+           if($user_selected == "1" || $user_selected_lowered == "Enter our latest Competition" )
+           {
+                $this->send_post_curl($this->make_text_message("coming soon!",$this->userphone));
+                $this->ResponsedWith200();
+           }
         }
         
 
