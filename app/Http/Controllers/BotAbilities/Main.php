@@ -32,10 +32,10 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
         $menu_main = $this->MenuArrayToObj($this->main_menu);
         $text_menu = new TextMenuSelection($menu_main);
         $menu_message = <<<MSG
-       Hello There!
-       Welcome to Timbuild South Africa.
-       Please choose from one of the following options:
-       MSG;
+        Hello There!
+        Welcome to Timbuild South Africa.
+        Please choose from one of the following options:
+        MSG;
         $this->set_session_route("Main");
         $text_menu->send_menu_to_user($menu_message);
         $this->go_to_next_step();
@@ -69,8 +69,10 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
             }
 
             if ($user_selected == "2" || $user_selected_lowered == "Locate your nearest TimBuild Store") {
-                $this->send_post_curl($this->make_text_message("coming soon!", $this->userphone));
-                $this->ResponsedWith200();
+                $locate_class = new LocateStore();
+                $locate_class->begin_func();
+                // $this->send_post_curl($this->make_text_message("coming soon!", $this->userphone));
+                // $this->ResponsedWith200();
             }
 
             if ($user_selected == "3" || $user_selected_lowered == "Visit the TimBuild SA’s website") {
