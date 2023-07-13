@@ -102,7 +102,8 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
                NOTE: Reply MENU at any time to return to our main menu.
 
                MSG;
-               $button_message = $this->make_text_message($message,$this->userphone,true);
+               $txt_msg = $this->make_text_message($message,$this->userphone,true);
+               $this->send_post_curl($txt_msg);
                $this->ResponsedWith200();
            }
         }
