@@ -173,6 +173,49 @@ trait GeneralAbilities
 
     }
 
+    public function checkConnectionConsent($response,$store)
+    {
+        $opt = ["Yes Please!","No. I am all sorted. Thank You"];
+        $consent_menu = $this->MenuArrayToObj($opt);
+        $txt_menu = new TextMenuSelection($consent_menu);
+        $txt_menu->check_expected_response($response);
+
+        if($response == "2" || $response == "No. I am all sorted. Thank You")
+        {
+            $this->send_post_curl($this->make_text_message("TimBuild SA appreciates you. Watch out for our future competitions and promotions.",$this->userphone));
+            $this->returnHomeMessage();
+            
+        }else{
+            $this->sendConnection($store);
+        }
+
+
+
+
+    }
+
+    public function sendConnection($store)
+    {
+        $store_model = new StoreInfo();
+        $store = $store_model->where('id',$store)->first();
+        $message = <<<MSG
+        Thank You {$this->username}. TimBuild {$store->location} is located at {$store->address}. 
+        Their contact number is: {$store->landline}
+        You can also email them on {$store->email_1}.
+
+        To be directed to the above store and by clicking the link below, you consent for us to 
+        connect you to the store. Your communications will be with your chosen store 
+        directly and no longer with TimBuild SA.
+        {link}
+        MSG;
+
+        
+
+        $this->send_post_curl($this->make_text_message($message,$this->userphone));
+
+
+    }
+
     public function returnHomeMessage ()
     {
         $this->send_post_curl($this->make_text_message("NOTE: Reply MENU at any time to return to our main menu.",$this->userphone));
