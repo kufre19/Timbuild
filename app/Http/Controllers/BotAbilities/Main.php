@@ -38,6 +38,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
        MSG;
        $this->set_session_route("Main");
        $text_menu->send_menu_to_user($menu_message);
+       $this->go_to_next_step();
        $this->ResponsedWith200();
     }
 
