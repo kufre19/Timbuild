@@ -67,7 +67,7 @@ class TextMenuSelection extends GeneralFunctions
     public function check_expected_response($response)
     {
         if (!in_array($response, $this->expected_responses)) {
-            info($response);
+            // info($response);
             $message = "Please select from the menu given!";
             $this->send_menu_to_user($message);
             return $this->ResponsedWith200();

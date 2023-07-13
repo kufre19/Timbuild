@@ -20,6 +20,8 @@ trait HandleText
         $this->find_text_intent();
         if ($this->text_intent == "menu") {
         //    start over and return to main menu 
+        $main = new Main();
+        $main->begin_func();
         }
 
         if ($this->text_intent == "run_action_steps") {
