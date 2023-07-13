@@ -78,22 +78,22 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
 
            if($user_selected == "3" || $user_selected_lowered == "Visit the TimBuild SA’s website" )
            {
-                $this->send_post_curl($this->make_text_message("coming soon!",$this->userphone));
-                $this->ResponsedWith200();
+            $message = <<<MSG
+            You can visit our main TimBuild SA website by clicking the link below:
+
+            www.timbuild.co.za 
+
+            NOTE: Reply MENU at any time to return to our main menu.
+
+            MSG;
+            $txt_msg = $this->make_text_message($message,$this->userphone,true);
+            $this->send_post_curl($txt_msg);
+            $this->ResponsedWith200();
            }
 
            if($user_selected == "4" || $user_selected_lowered == "Read our Competition Rules for Entry" )
            {
-            $button = [
-                [
-                    "type" => "url",
-                    "reply" => [
-                        "id" => "bnl_sample:4",
-                        "title" => "Sample Audio"
-                    ]
-                ]
-
-            ];
+           
                $message = <<<MSG
                Our latest rules of entry into our competitions can be found on our main TimBuild SA website by clicking the link below:
 
