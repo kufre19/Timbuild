@@ -269,7 +269,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $this->storeAnswerToSession(["store_as"=>self::STORE_SELECTED],$store->id);
 
         // ask for constent
-        $this->connection_consent();
+        // $this->connection_consent();
         $this->go_to_next_step();
         $this->ResponsedWith200();
 
@@ -285,7 +285,15 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
         // store data collected
         $this->storeCollectedData();
+        $msg = <<<MSG
+        Congratulations! You have successfully entered our competition.
+        Good Luck with the competition and thank you for your continued support.
+
+        MSG;
+
         // $this->go_to_next_step();
+        $this->send_post_curl($this->make_text_message($msg, $this->userphone));
+        $this->returnHomeMessage();
         $this->ResponsedWith200();
     }
 
