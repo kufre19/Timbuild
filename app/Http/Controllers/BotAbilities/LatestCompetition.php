@@ -45,7 +45,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
         $msg = <<<MSG
         Awesome! And thank you for taking part.
-        Entering is quick and easy!
+        Entry is quick and easy!
         Please follow these simple steps to enter our competition.
         We need a little information from you. 
         
@@ -144,7 +144,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
             $comp_type = "Contractor";
 
             $msg = <<<MSG
-            So you’re a Contactor. That is good to know. Last Question.
+            So you’re a Contractor. That is good to know. Last Question.
             Please confirm the type of industry you are currently involved in?            
             MSG;
 
@@ -196,7 +196,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
        
         $message = <<<MSG
         Great. In order to complete your entry into the right competition, we need to know which store is closest to you.
-        Please select your region to make your store selection easier. Your need only reply with the corresponding number:
+        Please select your region to make your store selection easier. You need to reply with the corresponding number:
         
         MSG;
         $this->listRegion($message);
@@ -231,7 +231,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
           $store_menu = $this->listStoreInRegion($user_selected);
           $message = <<<MSG
-          Fantastic. Here is a list of our stores located in your chosen province.
+          Fantastic. Here is a list of our stores located in your choosen province.
           MSG;
           $this->sendstoreMenu($store_menu,$message);
           $this->returnHomeMessage();
@@ -255,7 +255,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         {
             $message = <<<MSG
             Great. In order to complete your entry into the right competition, we need to know which store is closest to you.
-            Please select your region to make your store selection easier. Your need only reply with the corresponding number:
+            Please select your region to make your store selection easier. You need to reply with the corresponding number:
             
             MSG;
            $this->listRegion($message);
@@ -269,9 +269,9 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $this->storeAnswerToSession(["store_as"=>self::STORE_SELECTED],$store->id);
 
         // ask for constent
-        $this->connection_consent();
-        $this->go_to_next_step();
-        $this->ResponsedWith200();
+        // $this->connection_consent();
+        // $this->go_to_next_step();
+        $this->CheckConsentSelection();
 
     }
 
