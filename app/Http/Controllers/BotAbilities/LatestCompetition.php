@@ -280,9 +280,8 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $answers = $this->user_session_data['answered_questions'];
         $store = $answers[self::STORE_SELECTED];
 
-        $username = $this->getAnswerFromSession("first_name") . " ". $this->getAnswerFromSession("last_name");
-
-        $this->checkConnectionConsent($this->user_message_original,$store,$username);
+        // $username = $this->getAnswerFromSession("first_name") . " ". $this->getAnswerFromSession("last_name");
+        // $this->checkConnectionConsent($this->user_message_original,$store,$username);
 
         // store data collected
         $this->storeCollectedData();
@@ -301,7 +300,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         // set all data into var
         $store_id = $answers[self::STORE_SELECTED];
         $region_id = $answers[self::USER_REGION];
-
+        
         $first_name = $answers['first_name'];
         $last_name = $answers['last_name'];
         $email = $answers['email'];
@@ -349,7 +348,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $entries_model->industry = $industry;
         $entries_model->is_diy_customer = $is_diy_customer;
         $entries_model->is_contractor = $is_contractor;
-        $entries_model->connect_to_store = $answers['connect_to_store'];
+        $entries_model->connect_to_store = $answers['connect_to_store'] ?? "";
         $entries_model->save();
 
 
