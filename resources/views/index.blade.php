@@ -32,7 +32,7 @@
           </th>
           <th class="th-sm">Region
           </th>
-          <th class="th-sm"> Closes Store
+          <th class="th-sm"> Closer Store
           </th>
           <th class="th-sm">Project
           </th>
@@ -82,7 +82,7 @@
           </th>
           <th >Region
           </th>
-          <th > Closes Store
+          <th > Closer Store
           </th>
           <th >Project
           </th>

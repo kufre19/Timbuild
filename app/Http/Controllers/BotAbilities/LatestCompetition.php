@@ -269,7 +269,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $this->storeAnswerToSession(["store_as"=>self::STORE_SELECTED],$store->id);
 
         // ask for constent
-        // $this->connection_consent();
+        $this->connection_consent();
         $this->go_to_next_step();
         $this->ResponsedWith200();
 
