@@ -243,6 +243,20 @@ trait GeneralAbilities
         
     }
 
+    public function showStoreInfo($store)
+    {
+        $store_model = new StoreInfo();
+        $store = $store_model->where('id',$store)->first();
+        $message = <<<MSG
+        TimBuild {$store->location} is located at {$store->address}.
+        Their contact number is: {$store->landline}
+        You can also email them on {$store->email_1}.
+        
+        MSG;
+        $this->send_post_curl($this->make_text_message($message,$this->userphone));
+
+    }
+
     public function returnHomeMessage ()
     {
         $this->send_post_curl($this->make_text_message("NOTE: Reply MENU at any time to return to our main menu.",$this->userphone));

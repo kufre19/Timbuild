@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmails extends Command
 {
@@ -37,6 +38,7 @@ class SendEmails extends Command
      */
     public function handle()
     {
+        // Mail::send()
         return 0;
     }
 }

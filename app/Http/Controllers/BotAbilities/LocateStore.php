@@ -87,8 +87,9 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
 
         // ask for constent
         // $this->connection_consent();
-        $this->go_to_next_step();
-        $this->ResponsedWith200();
+        $this->CheckConsentSelection();
+        // $this->go_to_next_step();
+        // $this->ResponsedWith200();
 
     }
 
@@ -97,7 +98,8 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
         $answers = $this->user_session_data['answered_questions'];
         $store = $answers[self::STORE_SELECTED];
 
-        $this->checkConnectionConsent($this->user_message_original,$store);
+        // $this->checkConnectionConsent($this->user_message_original,$store);
+        $this->showStoreInfo($store);
         $this->ResponsedWith200();
     }
 
