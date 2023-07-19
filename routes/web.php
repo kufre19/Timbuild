@@ -44,21 +44,24 @@ Route::get('/entries', function () {
 });
 
 
-// Route::get("test", function(){
-//     $headers = [
-//         "Content-type"        => "text/csv",
-//         "Content-Disposition" => "attachment; filename=output_chat.csv", // <- name of file
-//         "Pragma"              => "no-cache",
-//         "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-//         "Expires"             => "0",
-//     ];
-//     $columns  = ['from_user', 'to_user', 'message', 'date_added'];
-//     $callback = function () use ($result, $columns) {
-//         $file = fopen('php://output', 'w'); //<-here. name of file is written in headers
-//         fputcsv($file, $columns);
-//         foreach ($result as $res) {
-//             fputcsv($file, [$res->from_user, $res->to_user, $res->message, $res->date_added]);
-//         }
-//         fclose($file);
-//     };
-// });
+Route::get("download", function(){
+    $entries_model = new Entries();
+    $result = $entries_model->get();
+    $headers = [
+        "Content-type"        => "text/csv",
+        "Content-Disposition" => "attachment; filename=entries.csv", // <- name of file
+        "Pragma"              => "no-cache",
+        "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+        "Expires"             => "0",
+    ];
+    $columns  = ['First Name', 'Last Name',"Email","Phone","Region"," Closer Store","Project","Industry","Connect to Store","DIY'ER","Contractor",];
+    $callback = function () use ($result, $columns) {
+        $file = fopen('php://output', 'w'); //<-here. name of file is written in headers
+        fputcsv($file, $columns);
+        foreach ($result as $res) {
+            fputcsv($file, [$res->first_name, $res->last_name,$res->email,$res->phone,$res->region,$res->store_closes,$res->project,$res->industry,$res->connect_to_store,$res->is_diy_customer,$res->is_contractor,]);
+        }
+        fclose($file);
+    };
+    return response()->stream($callback, 200, $headers);
+});

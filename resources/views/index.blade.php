@@ -98,6 +98,7 @@
       </tfoot>
     </table>
 
+    <p><a href="{{url('download')}}" class="btn btn-primary btn-large">Download</a></p>
     <p>
       {{$entries->links()}}
     </p>
