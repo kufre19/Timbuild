@@ -39,7 +39,7 @@ Route::get('/entries', function () {
 
     }
     $entries_model = new Entries();
-    $entries = $entries_model->paginate(20);
+    $entries = $entries_model->paginate(100);
     return view('index',compact("entries"));
 });
 
