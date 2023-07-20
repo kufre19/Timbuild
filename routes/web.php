@@ -71,7 +71,7 @@ Route::get("test", function () {
     $data["title"] = "techsolutionstuff.com";
 
     $files = [
-        public_path('attachments/entries.csv'),
+        public_path('entries.csv'),
     ];
 
 
