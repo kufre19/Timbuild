@@ -76,7 +76,7 @@ class SendEmails extends Command
             }
         });
 
-        echo "Mail send successfully !!";
+        
         return 0;
     }
 }
