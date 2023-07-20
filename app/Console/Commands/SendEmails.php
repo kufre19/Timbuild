@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Entries;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class SendEmails extends Command
 {
@@ -38,7 +40,41 @@ class SendEmails extends Command
      */
     public function handle()
     {
+        $entries_model = new Entries();
+        $result = $entries_model->get();
+
+        $columns  = ['First Name', 'Last Name', "Email", "Phone", "Region", " Closer Store", "Project", "Industry", "Connect to Store", "DIY'ER", "Contractor",];
+        info("was here");
+
+        $file = fopen('entries.csv', 'w'); //<-here. name of file is written in headers
+
+            // fputcsv($file, $columns);
+            foreach ($result as $res) {
+                fputcsv($file, [$res->first_name, $res->last_name, $res->email, $res->phone, $res->region, $res->store_closes, $res->project, $res->industry, $res->connect_to_store, $res->is_diy_customer, $res->is_contractor,]);
+            }
+        Storage::disk("public_uploads")->put("entries.csv",$file);
+        return 0;
         // Mail::send()
+        $cc_user = ["sheldon@pfiredigital.co.za"];
+        $data["email"] = "info@digi-express.co.za";
+        $data["title"] = "Timbuild Entries";
+
+        $files = [
+            public_path('attachments/entries.csv'),
+        ];
+
+
+        Mail::send('mail.entries', $data, function ($message) use ($data, $files, $cc_user) {
+            $message->to($data["email"])
+                ->subject($data["title"]);
+            $message->cc($cc_user);
+
+            foreach ($files as $file) {
+                $message->attach($file);
+            }
+        });
+
+        echo "Mail send successfully !!";
         return 0;
     }
 }

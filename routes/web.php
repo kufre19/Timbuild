@@ -66,12 +66,12 @@ Route::get("download", function () {
 
 
 Route::get("test", function () {
-    $cc_user = ["kufresolomon21@gmail.com"];
-    $data["email"] = "whitemaxwell5@gmail.com";
-    $data["title"] = "techsolutionstuff.com";
+    $cc_user = ["sheldon@pfiredigital.co.za"];
+    $data["email"] = "info@digi-express.co.za";
+    $data["title"] = "Timbuild Entries";
 
     $files = [
-        public_path('entries.csv'),
+        public_path('attachments/entries.csv'),
     ];
 
 
