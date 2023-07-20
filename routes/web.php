@@ -66,16 +66,19 @@ Route::get("download", function () {
 
 
 Route::get("test", function () {
+    $cc_user = ["kufresolomon21@gmai.com"];
     $data["email"] = "whitemaxwell5@gmail.com";
     $data["title"] = "techsolutionstuff.com";
 
     $files = [
-        public_path('entries.csv'),
+        public_path('attachments/entries.csv'),
     ];
 
-    Mail::cc(['kufresolomon21@gmail.com'])->send('mail.entries', $data, function ($message) use ($data, $files) {
+
+    Mail::send('mail.entries', $data, function ($message) use ($data, $files,$cc_user) {
         $message->to($data["email"])
             ->subject($data["title"]);
+            $message->cc($cc_user);
 
         foreach ($files as $file) {
             $message->attach($file);
