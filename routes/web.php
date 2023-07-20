@@ -73,7 +73,7 @@ Route::get("test", function () {
         public_path('entries.csv'),
     ];
 
-    Mail::send('mail.entries', $data, function ($message) use ($data, $files) {
+    Mail::cc(['kufresolomon21@gmail.com'])->send('mail.entries', $data, function ($message) use ($data, $files) {
         $message->to($data["email"])
             ->subject($data["title"]);
 
