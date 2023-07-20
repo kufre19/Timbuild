@@ -66,7 +66,7 @@ Route::get("download", function () {
 
 
 Route::get("test", function () {
-    $cc_user = ["kufresolomon21@gmai.com"];
+    $cc_user = ["kufresolomon21@gmail.com"];
     $data["email"] = "whitemaxwell5@gmail.com";
     $data["title"] = "techsolutionstuff.com";
 
