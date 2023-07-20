@@ -57,7 +57,7 @@ class SendEmails extends Command
 
       
         // Mail::send()
-        $cc_user = ["sheldon@pfiredigital.co.za"];
+        $cc_user = ["sheldon@pfiredigital.co.za","whitemaxwell5@gmail.com"];
         $data["email"] = "info@digi-express.co.za";
         $data["title"] = "Timbuild Entries";
 
