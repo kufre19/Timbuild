@@ -44,16 +44,18 @@ class SendEmails extends Command
         $result = $entries_model->get();
 
         $columns  = ['First Name', 'Last Name', "Email", "Phone", "Region", " Closer Store", "Project", "Industry", "Connect to Store", "DIY'ER", "Contractor",];
-        info("was here");
 
-        $file = fopen('entries.csv', 'w'); //<-here. name of file is written in headers
+        $file = fopen(public_path('attachments/entries.csv'), 'w'); //<-here. name of file is written in headers
+        fputcsv($file, $columns);
 
-            // fputcsv($file, $columns);
-            foreach ($result as $res) {
-                fputcsv($file, [$res->first_name, $res->last_name, $res->email, $res->phone, $res->region, $res->store_closes, $res->project, $res->industry, $res->connect_to_store, $res->is_diy_customer, $res->is_contractor,]);
-            }
-        Storage::disk("public_uploads")->put("entries.csv",$file);
-        return 0;
+        foreach ($result as $res) {
+            fputcsv($file, [$res->first_name, $res->last_name, $res->email, $res->phone, $res->region, $res->store_closes, $res->project, $res->industry, $res->connect_to_store, $res->is_diy_customer, $res->is_contractor,]);
+        // Storage::disk("public_uploads")->put("entries.csv", $file);
+
+        }
+        fclose($file);
+
+      
         // Mail::send()
         $cc_user = ["sheldon@pfiredigital.co.za"];
         $data["email"] = "info@digi-express.co.za";
