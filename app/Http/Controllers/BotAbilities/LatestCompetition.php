@@ -228,7 +228,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
           // store collected region
           $this->storeAnswerToSession(['store_as'=>self::USER_REGION]);
 
-          $store_menu = $this->listStoreInRegion($user_selected);
+          $store_menu = $this->listStoreInRegion($user_selected,"11");
           $message = <<<MSG
           Fantastic. Here is a list of our stores located in your choosen province.
           MSG;
@@ -246,7 +246,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $answers = $this->user_session_data['answered_questions'];
         $region = $answers[self::USER_REGION];
         // check store location selected
-        $store_menu = $this->listStoreInRegion($region);
+        $store_menu = $this->listStoreInRegion($region,"11");
         $this->checkStoreSelected($store_menu,$this->user_message_original);
 
         // check if need to be returned to province menu
