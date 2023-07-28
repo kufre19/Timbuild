@@ -63,7 +63,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
             $user_selected = $this->user_message_original;
             $user_selected_lowered = $this->user_message_lowered;
 
-            if ($user_selected == "1" || $user_selected_lowered == "Enter our latest Competition") {
+            if ($user_selected == "1" || $user_selected_lowered == "Enter our power up competition") {
                 $latest_comp = new LatestCompetition();
                 $latest_comp->begin_func();
                 // $this->send_post_curl($this->make_text_message("coming soon!", $this->userphone));
@@ -77,7 +77,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
                 // $this->ResponsedWith200();
             }
 
-            if ($user_selected == "3" || $user_selected_lowered == "Visit the TimBuild SA’s website") {
+            if ($user_selected == "3" || $user_selected_lowered == "Visit TimBuild Group website") {
                 $message = <<<MSG
             You can visit our main TimBuild SA website by clicking the link below:
 
@@ -91,7 +91,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
                 $this->ResponsedWith200();
             }
 
-            if ($user_selected == "4" || $user_selected_lowered == "Read our Competition Rules for Entry") {
+            if ($user_selected == "4" || $user_selected_lowered == "Competition terms and condition") {
 
                 $message = <<<MSG
                Our latest rules of entry into our competitions can be found on our main TimBuild SA website by clicking the link below:
