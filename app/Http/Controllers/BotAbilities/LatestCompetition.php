@@ -87,8 +87,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
 
         $msg = <<<MSG
-        Great! Now, {$this->getAnswerFromSession('first_name')} {$this->user_message_original}. We need to know your email address in order to 
-        communicate with you should you be one of our lucky winners. 
+        Great! Now, {$this->getAnswerFromSession('first_name')} {$this->user_message_original}. We need to know your email address in order to communicate with you should you be one of our lucky winners. 
 
         NOTE: Reply MENU at any time to return to our main menu.
 
