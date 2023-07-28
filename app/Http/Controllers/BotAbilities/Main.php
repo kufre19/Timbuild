@@ -18,10 +18,10 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
 
     public $steps = ["begin_func", "DoSelection", ""];
     public $main_menu = [
-        "Enter our latest Competition",
+        "Enter our power up competition",
         "Locate your nearest TimBuild Store",
-        "Visit the TimBuild SA’s website",
-        "Read our Competition Rules for Entry"
+        "Visit TimBuild Group website",
+        "Competition terms and condition"
     ];
 
 
