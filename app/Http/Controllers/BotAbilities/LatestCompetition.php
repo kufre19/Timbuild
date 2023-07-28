@@ -271,7 +271,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         // ask for constent
         $this->connection_consent();
         $this->go_to_next_step();
-        $this->CheckConsentSelection();
+      
 
     }
 
@@ -281,7 +281,9 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $store = $answers[self::STORE_SELECTED];
 
         $username = $this->getAnswerFromSession("first_name") . " ". $this->getAnswerFromSession("last_name");
-        // $this->checkConnectionConsent($this->user_message_original,$store,$username);
+        $permission = $this->getAnswerFromSession("connect_to_store");
+
+        $this->checkConnectionConsent($this->user_message_original,$store,$permission,$username);
 
         // store data collected
         $this->storeCollectedData();

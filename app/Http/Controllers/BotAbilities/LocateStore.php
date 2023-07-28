@@ -19,7 +19,7 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
     {
         $this->set_session_route("LocateStore");
         $message = <<<MSG
-        Let us help you! We currently only have stores located in 5 Provinces and growing.
+        Let us help you! We currently only have stores located in 4 Provinces and growing.
         Please select your region to make your store selection easier. Your need only reply with the corresponding number:
         MSG;
         $this->listRegion($message);
