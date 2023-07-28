@@ -56,7 +56,7 @@ trait GeneralAbilities
         $stores_Arr = [];
 
         if ($except != "") {
-            $stores = $store_model->select("location")->where("region_id", $region)->where("id",$except)->orderBy("location", "asc")->get();
+            $stores = $store_model->select("location")->where("region_id", $region)->where("id","!=",$except)->orderBy("location", "asc")->get();
         } else {
             $stores = $store_model->select("location")->where("region_id", $region)->orderBy("location", "asc")->get();
         }
