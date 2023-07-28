@@ -173,7 +173,7 @@ trait GeneralAbilities
 
     }
 
-    public function checkConnectionConsent($response,$store,$user="")
+    public function checkConnectionConsent($response,$store,$permission="",$username="")
     {
         $opt = ["Yes Please!","No. I am all sorted. Thank You"];
         $consent_menu = $this->MenuArrayToObj($opt);
@@ -185,12 +185,13 @@ trait GeneralAbilities
         {
         $this->storeAnswerToSession(['store_as'=>"connect_to_store"],"no");
 
-            $this->send_post_curl($this->make_text_message("TimBuild SA appreciates you. Watch out for our future competitions and promotions.",$this->userphone));
-            $this->returnHomeMessage();
+        
+        $this->sendConnection($store,$permission,$username);
+
             
         }else{
             $this->storeAnswerToSession(['store_as'=>"connect_to_store"],"yes");
-            $this->sendConnection($store,$user);
+            $this->sendConnection($store,$permission,$username);
         }
 
 
@@ -198,16 +199,25 @@ trait GeneralAbilities
 
     }
 
-    public function sendConnection($store,$user="")
+    public function sendConnection($store,$permission,$username="")
     {
-        if($user != "")
+        if($username != "")
         {
-            $name = $user;
+            $name = $username;
         }else{
             $name = $this->username;
         }
+
         $store_model = new StoreInfo();
         $store = $store_model->where('id',$store)->first();
+        $show_link = "";
+
+        // check if user has given permssion and if store has link
+        if($permission == "yes" && $store->wa_link != "")
+        {
+            $show_link = $store->wa_link;
+        }
+
         $message = <<<MSG
         Thank You {$name}. TimBuild {$store->location} is located at {$store->address}.
         Their contact number is: {$store->landline}
@@ -215,7 +225,7 @@ trait GeneralAbilities
 
         To be directed to the above store and by clicking the link below, you consent for us to 
         connect you to the store. Your communications will be with your chosen store directly and no longer with TimBuild SA.
-        {link}
+        {$show_link}
         MSG;
 
         

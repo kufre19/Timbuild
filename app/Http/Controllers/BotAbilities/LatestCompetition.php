@@ -269,8 +269,8 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $this->storeAnswerToSession(["store_as"=>self::STORE_SELECTED],$store->id);
 
         // ask for constent
-        // $this->connection_consent();
-        // $this->go_to_next_step();
+        $this->connection_consent();
+        $this->go_to_next_step();
         $this->CheckConsentSelection();
 
     }
@@ -280,7 +280,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $answers = $this->user_session_data['answered_questions'];
         $store = $answers[self::STORE_SELECTED];
 
-        // $username = $this->getAnswerFromSession("first_name") . " ". $this->getAnswerFromSession("last_name");
+        $username = $this->getAnswerFromSession("first_name") . " ". $this->getAnswerFromSession("last_name");
         // $this->checkConnectionConsent($this->user_message_original,$store,$username);
 
         // store data collected
