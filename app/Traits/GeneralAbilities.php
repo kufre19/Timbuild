@@ -56,7 +56,7 @@ trait GeneralAbilities
 
         }
         $store_model = new StoreInfo();
-        $stores = $store_model->select("location")->where("region_id",$region)->get();
+        $stores = $store_model->select("location")->where("region_id",$region)->orderBy("location","desc")->get();
         $stores_Arr = [];
 
         foreach ($stores as $store => $value) {
