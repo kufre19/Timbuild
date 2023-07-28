@@ -47,7 +47,6 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         Awesome! And thank you for taking part.
         Entry is quick and easy!
         Please follow these simple steps to enter our competition.
-        We need a little information from you. 
         
         Reply MENU at any time to return to our main menu.
 
