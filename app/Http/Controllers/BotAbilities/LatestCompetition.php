@@ -258,6 +258,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
             
             MSG;
            $this->listRegion($message);
+           $this->go_to_previous_step();
            $this->returnHomeMessage();
 
            $this->ResponsedWith200();
