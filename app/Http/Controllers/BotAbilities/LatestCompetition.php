@@ -250,7 +250,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $this->checkStoreSelected($store_menu,$this->user_message_original);
 
         // check if need to be returned to province menu
-        if($this->goBackToRegionSelection($region,$this->user_message_original))
+        if($this->goBackToRegionSelection($region,$this->user_message_original,"11"))
         {
             $message = <<<MSG
             Great. In order to complete your entry into the right competition, we need to know which store is closest to you.

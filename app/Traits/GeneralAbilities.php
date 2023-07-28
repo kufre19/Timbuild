@@ -87,17 +87,25 @@ trait GeneralAbilities
         }
     }
 
-    public function goBackToRegionSelection($region, $response)
+    public function goBackToRegionSelection($region, $response,$except="")
     {
         if (!is_numeric($region)) {
             $region_model = new Region();
             $region_select = $region_model->select("id")->where('region', $region)->first();
             $region = $region_select->id;
         }
-        $store_model = new StoreInfo();
-        $stores = $store_model->select("location")->where("region_id", $region)->get();
-        $stores_Arr = [];
 
+        $store_model = new StoreInfo();
+        $stores_Arr = [];
+       
+        if($except != "")
+        {
+            $stores = $store_model->select("location")->where("region_id", $region)->where("id","!=",$except)->get();
+    
+        }else {
+            $stores = $store_model->select("location")->where("region_id", $region)->get();
+        }
+        
         foreach ($stores as $store => $value) {
             array_push($stores_Arr, $value['location']);
         }
