@@ -100,10 +100,10 @@ trait GeneralAbilities
        
         if($except != "")
         {
-            $stores = $store_model->select("location")->where("region_id", $region)->where("id","!=",$except)->get();
+            $stores = $store_model->select("location")->where("region_id", $region)->where("id","!=",$except)->orderBy("location", "asc")->get();
     
         }else {
-            $stores = $store_model->select("location")->where("region_id", $region)->get();
+            $stores = $store_model->select("location")->where("region_id", $region)->orderBy("location", "asc")->get();
         }
 
         foreach ($stores as $store => $value) {
@@ -135,7 +135,7 @@ trait GeneralAbilities
             $region = $region_select->id;
         }
         $store_model = new StoreInfo();
-        $stores = $store_model->select("location")->where("region_id", $region)->get();
+        $stores = $store_model->select("location")->where("region_id", $region)->orderBy("location", "asc")->get();
         $stores_Arr = [];
 
         foreach ($stores as $store => $value) {
