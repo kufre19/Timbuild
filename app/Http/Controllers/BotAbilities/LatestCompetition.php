@@ -30,6 +30,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
     ];
     public $project = [
         "Board/Cabinetry",
+        "Building / Renovating",
         "Woodworking",
         "Paint Project",
         "Plumbing",
