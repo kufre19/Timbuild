@@ -18,7 +18,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         "confirmCompetitorType",
         "saveWorkingOn",
         "getStoreLocation","getConsent","CheckConsentSelection",];
-    public $competitor_type_menu = ["DIY","Contractor"];
+    public $competitor_type_menu = ["DIY Customer","Contractor"];
     public $industry = [
         "Carpenter / Cabinet Maker",
         "Building Contractor",
@@ -126,9 +126,9 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         // save comp type
 
 
-        if($user_selected == "1" || $user_selected_lowered == "diy")
+        if($user_selected == "1" || $user_selected_lowered == "diy customer")
         {
-            $comp_type = "DIY";
+            $comp_type = "DIY Customer";
             $msg = <<<MSG
             So you’re a DIY’er. That is good to know. Last Question.
             What is the current or next project you are going to be working on?
@@ -168,7 +168,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
     {
         $comp_type = $this->getAnswerFromSession("comp_type");
 
-        if($comp_type == "DIY")
+        if($comp_type == "DIY Customer")
         {
             $menu = $this->project;
         }else{
@@ -328,7 +328,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
       
 
 
-        if($answers['comp_type'] == "DIY")
+        if($answers['comp_type'] == "DIY Customer")
         {
             $is_diy_customer = "yes";
             $project = $answers['working_on'];
