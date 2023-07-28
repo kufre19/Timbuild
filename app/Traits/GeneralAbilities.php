@@ -127,7 +127,7 @@ trait GeneralAbilities
     }
 
     // this will fetch sstore from db using the selection stored in db
-    public function fetchStoreSelected($region, $selection)
+    public function fetchStoreSelected($region, $selection,$except="")
     {
         if (!is_numeric($region)) {
             $region_model = new Region();
@@ -135,9 +135,13 @@ trait GeneralAbilities
             $region = $region_select->id;
         }
         $store_model = new StoreInfo();
-        $stores = $store_model->select("location")->where("region_id", $region)->orderBy("location", "asc")->get();
         $stores_Arr = [];
 
+        if($except != ""){
+            $stores = $store_model->select("location")->where("region_id", $region)->where("id","!=",$except)->orderBy("location", "asc")->get();
+        }else {
+            $stores = $store_model->select("location")->where("region_id", $region)->orderBy("location", "asc")->get();
+        }
         foreach ($stores as $store => $value) {
             array_push($stores_Arr, $value['location']);
         }

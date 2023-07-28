@@ -265,7 +265,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         }
 
         // store the store-location selected 
-        $store = $this->fetchStoreSelected($region,$this->user_message_original);
+        $store = $this->fetchStoreSelected($region,$this->user_message_original,"11");
         $this->storeAnswerToSession(["store_as"=>self::STORE_SELECTED],$store->id);
 
         // ask for constent
