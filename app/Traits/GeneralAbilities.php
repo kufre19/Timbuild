@@ -105,16 +105,16 @@ trait GeneralAbilities
         }else {
             $stores = $store_model->select("location")->where("region_id", $region)->get();
         }
-        
+
         foreach ($stores as $store => $value) {
             array_push($stores_Arr, $value['location']);
         }
         // extra data that's not saved in db 
-        array_push($stores_Arr, "Go Back to Province selection");
+        array_push($stores_Arr, "Go back to Province selection");
 
         if (!is_numeric($response)) {
             // check by text
-            if ($response == "Go Back to Province selection") {
+            if ($response == "Go back to Province selection") {
                 return true;
             }
         } else {
