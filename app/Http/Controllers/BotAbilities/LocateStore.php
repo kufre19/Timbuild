@@ -78,6 +78,7 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
         // check if need to be returned to province menu
         if($this->goBackToRegionSelection($region,$this->user_message_original))
         {
+            $this->go_to_previous_step();
             return $this->begin_func();
         }
 
