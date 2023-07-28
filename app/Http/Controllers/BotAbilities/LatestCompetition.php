@@ -287,7 +287,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $this->storeCollectedData();
         $msg = <<<MSG
         Congratulations! You have successfully entered our competition.
-        Good Luck with the competition and thank you for your continued support.
+        Good Luck and thank you for your continued support.
 
         MSG;
 

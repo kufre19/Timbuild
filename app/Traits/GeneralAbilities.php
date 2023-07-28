@@ -63,7 +63,7 @@ trait GeneralAbilities
             array_push($stores_Arr,$value['location']);
         }
         // extra data that's not saved in db 
-        array_push($stores_Arr,"Go Back to Province selection");
+        array_push($stores_Arr,"Go back to Province selection");
 
         $store_obj = $this->MenuArrayToObj($stores_Arr);
         return $store_obj;
