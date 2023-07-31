@@ -29,7 +29,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
     ];
     public $project = [
-        "Board/Cabinetry",
+        "Board / Cabinetry",
         "Building / Renovating",
         "Woodworking",
         "Paint Project",
@@ -68,7 +68,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $this->storeAnswerToSession(["store_as"=>"first_name"]);
 
         $msg = <<<MSG
-        Thanks {$this->user_message_original}. Please could you let us have your surname?
+        Thanks {$this->user_message_original}. Please could you let us have your Surname?
 
         NOTE: Reply MENU at any time to return to our main menu.
         MSG;
@@ -230,7 +230,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
           $store_menu = $this->listStoreInRegion($user_selected,"11");
           $message = <<<MSG
-          Fantastic. Here is a list of our stores located in your choosen province.
+          Fantastic. Here is a list of our stores located in your choosen Province.
           MSG;
           $this->sendstoreMenu($store_menu,$message);
           $this->returnHomeMessage();
@@ -268,6 +268,14 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
         $store = $this->fetchStoreSelected($region,$this->user_message_original,"11");
         $this->storeAnswerToSession(["store_as"=>self::STORE_SELECTED],$store->id);
 
+        // send congratulation message
+        $msg = <<<MSG
+        Congratulations! You have successfully entered our competition.
+        Good Luck and thank you for your continued support.
+
+        MSG;
+        $this->send_post_curl($this->make_text_message($msg, $this->userphone));
+        
         // ask for constent
         $this->connection_consent();
         $this->go_to_next_step();
@@ -287,14 +295,7 @@ class LatestCompetition extends GeneralFunctions implements AbilityInterface
 
         // store data collected
         $this->storeCollectedData();
-        $msg = <<<MSG
-        Congratulations! You have successfully entered our competition.
-        Good Luck and thank you for your continued support.
-
-        MSG;
-
-        // $this->go_to_next_step();
-        $this->send_post_curl($this->make_text_message($msg, $this->userphone));
+        
         $this->returnHomeMessage();
         $this->ResponsedWith200();
     }

@@ -56,7 +56,7 @@ class LocateStore extends GeneralFunctions implements AbilityInterface
 
           $store_menu = $this->listStoreInRegion($user_selected);
           $message = <<<MSG
-          Fantastic. Here is a list of our stores located in your chosen province.
+          Fantastic. Here is a list of our stores located in your chosen Province.
           MSG;
           $this->sendstoreMenu($store_menu,$message);
           $this->returnHomeMessage();

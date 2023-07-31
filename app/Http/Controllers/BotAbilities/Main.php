@@ -21,7 +21,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
         "Enter our Power Up competition",
         "Locate your nearest TimBuild Store",
         "Visit TimBuild Group website",
-        "Competition terms and Condition"
+        "Competition Terms & Conditions"
     ];
 
 
@@ -33,7 +33,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
         $text_menu = new TextMenuSelection($menu_main);
         $menu_message = <<<MSG
         Hello There!
-        Welcome to Timbuild South Africa.
+        Welcome to TimBuild South Africa.
         Please choose from one of the following options:
         MSG;
         $this->set_session_route("Main");
@@ -91,7 +91,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
                 $this->ResponsedWith200();
             }
 
-            if ($user_selected == "4" || $user_selected_lowered == "Competition terms and Condition") {
+            if ($user_selected == "4" || $user_selected_lowered == "Competition Terms & Conditions") {
 
                 $message = <<<MSG
                Our latest rules of entry into our competitions can be found on our main TimBuild SA website by clicking the link below:

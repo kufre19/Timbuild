@@ -180,7 +180,11 @@ trait GeneralAbilities
             $this->storeAnswerToSession(['store_as' => "connect_to_store"], "no");
 
 
-            $this->sendConnection($store, $permission, $username);
+            $msg = <<<MSG
+            Ok. Thank you for your continued support. We hope you visit your local Timbuild store soon. Have a great day.
+            MSG;
+            $this->send_post_curl($this->make_text_message($msg, $this->userphone));
+            
         } else {
             $this->storeAnswerToSession(['store_as' => "connect_to_store"], "yes");
             $this->sendConnection($store, $permission, $username);
