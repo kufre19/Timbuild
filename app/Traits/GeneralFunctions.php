@@ -87,7 +87,7 @@ trait GeneralFunctions
 
     public function getAnswerFromSession($key)
     {
-        return  $this->user_session_data['answered_questions'][$key];
+        return  $this->user_session_data['answered_questions'][$key] ?? null;
     }
 
   
