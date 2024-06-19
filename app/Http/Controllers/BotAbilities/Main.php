@@ -33,7 +33,7 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
         $text_menu = new TextMenuSelection($menu_main);
         $menu_message = <<<MSG
         Hello There!
-        Welcome to TimBuild South Africa.
+        Welcome to TimBuild Western Cape.
         Please choose from one of the following options:
         MSG;
         $this->set_session_route("Main");
