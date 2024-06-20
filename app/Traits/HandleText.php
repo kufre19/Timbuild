@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Http\Controllers\BotAbilities\Main;
+use App\Http\Controllers\BotAbilities\OnlyWesternCapeLocation;
 use App\Models\User;
 use App\Models\WaUser;
 use Illuminate\Http\Request;
@@ -20,8 +21,11 @@ trait HandleText
         $this->find_text_intent();
         if ($this->text_intent == "menu") {
         //    start over and return to main menu 
-        $main = new Main();
-        $main->begin_func();
+        // $main = new Main();
+        // $main->begin_func();
+
+        $onlyWesternCape = new OnlyWesternCapeLocation();
+        $onlyWesternCape->begin_func();
         }
 
         if ($this->text_intent == "run_action_steps") {

@@ -17,11 +17,17 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
 {
 
     public $steps = ["begin_func", "DoSelection", ""];
+    // public $main_menu = [
+    //     "Enter our Power Up competition",
+    //     "Locate your nearest TimBuild Store",
+    //     "Visit TimBuild Group website",
+    //     "Competition Terms & Conditions"
+    // ];
+
     public $main_menu = [
-        "Enter our Power Up competition",
-        "Locate your nearest TimBuild Store",
-        "Visit TimBuild Group website",
-        "Competition Terms & Conditions"
+        "TimBuild Woodstock",
+        "TimBuild Somerset West",
+        "TimBuild Stellenbosch",
     ];
 
 
@@ -34,9 +40,10 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
         $menu_message = <<<MSG
         Hello There!
         Welcome to TimBuild Western Cape.
-        Please choose from one of the following options:
+        Please choose from one of the following options to locate your nearest store:
         MSG;
-        $this->set_session_route("Main");
+        // $this->set_session_route("Main");
+        $this->set_session_route("OnlyWesternCapeLocation");
         $text_menu->send_menu_to_user($menu_message);
         $this->go_to_next_step();
         $this->ResponsedWith200();
@@ -64,8 +71,12 @@ class Main extends BotFunctionsGeneralFunctions implements AbilityInterface
             $user_selected_lowered = $this->user_message_lowered;
 
             if ($user_selected == "1" || $user_selected_lowered == "Enter our Power Up competition") {
-                $latest_comp = new LatestCompetition();
-                $latest_comp->begin_func();
+
+
+
+                // uncomment the first two when returning back to old funcions/menu
+                // $latest_comp = new LatestCompetition();
+                // $latest_comp->begin_func();
                 // $this->send_post_curl($this->make_text_message("coming soon!", $this->userphone));
                 // $this->ResponsedWith200();
             }

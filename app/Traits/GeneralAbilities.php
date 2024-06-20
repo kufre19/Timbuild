@@ -259,6 +259,20 @@ trait GeneralAbilities
         $this->send_post_curl($this->make_text_message($message, $this->userphone));
     }
 
+    public function showStoreInfoOnlyWesternCape($store)
+    {
+        $store_model = new StoreInfo();
+        $store = $store_model->where('id', $store)->first();
+        $message = <<<MSG
+        TimBuild {$store->location} 
+        Address: {$store->address}.
+        Tel: {$store->landline}
+        Email: {$store->email_1}.
+        
+        MSG;
+        $this->send_post_curl($this->make_text_message($message, $this->userphone));
+    }
+
     public function returnHomeMessage()
     {
         $this->send_post_curl($this->make_text_message("NOTE: Reply MENU at any time to return to our main menu.", $this->userphone));
