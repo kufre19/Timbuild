@@ -45,12 +45,22 @@ class OnlyWesternCapeLocation extends GeneralFunctions implements AbilityInterfa
 
         if($user_selected == "1" || $this->user_message_lowered ==  "timbuild woodstock")
         {
-            $this->showStoreInfoOnlyWesternCape($this->fetchStore(1));
+            $this->showStoreInfoOnlyWesternCape(13);
             $this->returnHomeMessage();
             $this->ResponsedWith200();
 
 
-        }else{
+        }elseif ($user_selected == "2" || $this->user_message_lowered ==  "timbuild somerset west") {
+            $this->showStoreInfoOnlyWesternCape(14);
+            $this->returnHomeMessage();
+            $this->ResponsedWith200();
+        }
+        elseif ($user_selected == "3" || $this->user_message_lowered ==  "timbuild stellenbosch") {
+            $this->showStoreInfoOnlyWesternCape(12);
+            $this->returnHomeMessage();
+            $this->ResponsedWith200();
+        }
+        else{
             // return a please select an option from the menu
             $message = "Please select from the menu given!";
             $this->send_menu_to_user($message);
