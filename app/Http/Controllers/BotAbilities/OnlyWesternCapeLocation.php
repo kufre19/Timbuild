@@ -30,7 +30,6 @@ class OnlyWesternCapeLocation extends GeneralFunctions implements AbilityInterfa
         Welcome to TimBuild Western Cape.
         Please choose from one of the following options to locate your nearest store:
         MSG;
-        // $this->set_session_route("Main");
         $this->set_session_route("OnlyWesternCapeLocation");
         $text_menu->send_menu_to_user($menu_message);
         $this->go_to_next_step();
@@ -63,7 +62,11 @@ class OnlyWesternCapeLocation extends GeneralFunctions implements AbilityInterfa
         else{
             // return a please select an option from the menu
             $message = "Please select from the menu given!";
-            $this->send_menu_to_user($message);
+
+            $menu_main = $this->MenuArrayToObj($this->main_menu);
+            $text_menu = new TextMenuSelection($menu_main);
+            $text_menu->send_menu_to_user($message);
+
             return $this->ResponsedWith200();
         }
 
