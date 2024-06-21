@@ -267,7 +267,9 @@ trait GeneralAbilities
         TimBuild {$store->location} 
         Address: {$store->address}.
         Tel: {$store->landline}
-        Email: {$store->email_1}.
+        Email: {$store->email_1}
+        Website: {$store->website}
+
         
         MSG;
         $this->send_post_curl($this->make_text_message($message, $this->userphone));
